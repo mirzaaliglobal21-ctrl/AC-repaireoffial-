@@ -40,17 +40,17 @@ export const EmergencySection: React.FC<EmergencySectionProps> = ({ onOpenBookin
                 </div>
 
                 {/* Night City Alert Pill */}
-                <div className="absolute bottom-4 inset-x-4 bg-white/95 backdrop-blur-md border border-amber-300 p-4 rounded-2xl flex items-center justify-between shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
-                      <Clock className="w-5 h-5 text-amber-600" />
+                <div className="absolute bottom-3 sm:bottom-4 inset-x-3 sm:inset-x-4 bg-white/95 backdrop-blur-md border border-amber-300 p-3 sm:p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-xl">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500 font-bold">متوسط وقت الوصول الآن</p>
-                      <p className="text-sm font-extrabold text-[#ea580c]">أقل من 40 دقيقة داخل الرياض وجدة</p>
+                      <p className="text-[11px] sm:text-xs text-slate-500 font-bold">متوسط وقت الوصول الآن</p>
+                      <p className="text-xs sm:text-sm font-extrabold text-[#ea580c]">أقل من 30 - 45 دقيقة بمكة والمدن</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-emerald-100 text-emerald-800 border border-emerald-300 px-3 py-1 rounded-full text-xs font-bold">
+                  <div className="flex items-center gap-1.5 bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold self-end sm:self-auto">
                     <span>متاح الآن</span>
                     <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                   </div>
@@ -104,19 +104,19 @@ export const EmergencySection: React.FC<EmergencySectionProps> = ({ onOpenBookin
               </div>
             </div>
 
-            {/* Emergency CTA Buttons */}
-            <div className="pt-4 flex flex-wrap items-center gap-3">
+            {/* Emergency CTA Buttons: Responsive full-width on mobile */}
+            <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 via-orange-500 to-[#ea580c] hover:opacity-95 text-white font-black px-7 py-3.5 rounded-2xl text-sm sm:text-base shadow-xl shadow-red-500/20 transition-all hover:scale-105"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 via-orange-500 to-[#ea580c] hover:opacity-95 text-white font-black px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl text-sm sm:text-base shadow-xl shadow-red-500/20 transition-all hover:scale-102"
               >
-                <Phone className="w-5 h-5 animate-bounce" />
-                <span>اتصال طوارئ فوري: {CONTACT_INFO.phoneDisplay}</span>
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" />
+                <span>اتصال طوارئ: {CONTACT_INFO.phoneDisplay}</span>
               </a>
 
               <button
                 onClick={() => onOpenBooking('طوارئ 24 ساعة - صيانة فورية')}
-                className="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-bold border border-slate-300 px-6 py-3.5 rounded-2xl text-sm sm:text-base shadow-sm transition-all cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-bold border border-slate-300 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl text-sm sm:text-base shadow-sm transition-all cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-amber-600" />
                 <span>طلب حجز عاجل</span>

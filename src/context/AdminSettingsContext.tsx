@@ -55,19 +55,21 @@ export interface AdminLocationSettings {
   nearbyLandmark: string;
   customMapImageUrl?: string;
   googleMapsUrl?: string;
+  plusCode?: string;
 }
 
 export const DEFAULT_LOCATION_SETTINGS: AdminLocationSettings = {
-  latitude: 21.39170,
-  longitude: 39.87593,
+  latitude: 21.39163,
+  longitude: 39.87588,
   cityName: 'المملكة العربية السعودية، مكة المكرمة',
-  districtName: 'حي العزيزية والجامعة (Al Aziziyah & Al Jamiah)',
-  streetName: '3801 شارع الشيخ عبدالله بن حميد - المبنى الملاصق لعرين العزيزية (مقر الورشة والمحل) - مكة 24242 7003',
-  adjacentLandmark1: 'موقع الورشة والمحل: المبنى المحدد بعلامة الصح (✔) ملاصق ومجاور لعرين العزيزية للشقق المفروشة مباشرة',
-  adjacentLandmark2: 'على شارع الشيخ عبدالله بن حميد مباشرة (Abdullah Ibn Hamid)',
-  nearbyLandmark: 'المواصلات: أمام محطة وموقف حافلات 6B Bus Stand (HCOI) وقريب من طريق المسجد الحرام',
-  customMapImageUrl: '',
-  googleMapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=21.39170,39.87593',
+  districtName: 'حي العزيزية / الجامعة، مكة المكرمة',
+  streetName: 'شارع الشيخ عبدالله بن حميد، مكة المكرمة 24242',
+  adjacentLandmark1: 'بجوار فندق سنابل الذهبي (Snabel Golden Hotel) وعمارة نجيبة',
+  adjacentLandmark2: 'بالقرب من موقف باص 6B Bus Stand HC وبقالة العزيزية وبقالة فايزة',
+  nearbyLandmark: 'الرمز الدقيق: 9VRG+M9 مكة المكرمة | مبنى 270 الحج ومطحنة الدقيق 2',
+  customMapImageUrl: '/assets/aistudio/Screenshot_2026-10-20_164009_5f389119.png',
+  googleMapsUrl: 'https://maps.app.goo.gl/jxPiAGha5uXLm6gX7?g_st=aw',
+  plusCode: '9VRG+M9 Makkah Saudi Arabia',
 };
 
 export function extractCoordinates(input: string): { lat: number; lng: number } | null {
@@ -340,7 +342,14 @@ export const AdminSettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [contactSettings, setContactSettings] = useState<typeof DEFAULT_CONTACT>(() => {
     try {
       const saved = localStorage.getItem('al_saqr_contact_settings');
-      return saved ? JSON.parse(saved) : DEFAULT_CONTACT;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.phone === '0550189441') {
+          return DEFAULT_CONTACT;
+        }
+        return parsed;
+      }
+      return DEFAULT_CONTACT;
     } catch {
       return DEFAULT_CONTACT;
     }
@@ -351,8 +360,8 @@ export const AdminSettingsProvider: React.FC<{ children: React.ReactNode }> = ({
       const saved = localStorage.getItem('al_saqr_location_settings');
       if (saved) {
         const parsed = JSON.parse(saved);
-        // If old hotel coordinates or previous test coordinates were stored, auto-upgrade to the user's green-ticked building
-        if (!parsed.latitude || Math.abs(parsed.latitude - 21.3917258) < 0.0001 || Math.abs(parsed.latitude - 21.39148) < 0.0001) {
+        // Auto-upgrade if previous coordinates or old URL were stored
+        if (!parsed.googleMapsUrl?.includes('jxPiAGha5uXLm6gX7') || Math.abs((parsed.latitude || 0) - 21.39163) > 0.0005) {
           return DEFAULT_LOCATION_SETTINGS;
         }
         return { ...DEFAULT_LOCATION_SETTINGS, ...parsed };

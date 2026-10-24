@@ -102,13 +102,13 @@ export const AdminDashboardModal: React.FC = () => {
       contactSettings: draftContact,
       locationSettings: draftLocation,
     });
-    showToast('تم حفظ جميع الأسعار والموقع والإعدادات بنجاح وتحديث الموقع فورياً! 🎉');
+    showToast('All settings, prices, and location saved successfully! Platform updated live. 🎉');
   };
 
   const handleReset = () => {
-    if (window.confirm('هل أنت متأكد من استعادة كافة الأسعار الأصلية الافتراضية؟')) {
+    if (window.confirm('Are you sure you want to restore all original default settings and prices?')) {
       resetToDefaults();
-      showToast('تمت استعادة كافة الأسعار والإعدادات الافتراضية بنجاح.');
+      showToast('All default settings and prices have been restored successfully.');
     }
   };
 
@@ -125,10 +125,10 @@ export const AdminDashboardModal: React.FC = () => {
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/80 backdrop-blur-md animate-fadeIn" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/80 backdrop-blur-md animate-fadeIn" dir="ltr">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-6xl h-[92vh] bg-white rounded-3xl shadow-2xl border border-amber-300 flex flex-col overflow-hidden text-right">
+      <div className="relative w-full max-w-6xl h-[92vh] bg-white rounded-3xl shadow-2xl border border-amber-300 flex flex-col overflow-hidden text-left font-sans">
         
         {/* Top Header Bar */}
         <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 px-4 sm:px-6 py-4 text-white flex flex-wrap items-center justify-between gap-3 border-b border-amber-500/30">
@@ -139,13 +139,13 @@ export const AdminDashboardModal: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base sm:text-xl font-black text-white">لوحة تحكم وتعديل الأسعار</h2>
+                <h2 className="text-base sm:text-xl font-black text-white">Admin Control Center</h2>
                 <span className="text-[10px] sm:text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
-                  متصل كمسؤول معتمد
+                  Authorized Admin Connected
                 </span>
               </div>
               <p className="text-[11px] sm:text-xs text-slate-300">
-                يمكنك تغيير أسعار أي خدمة أو باقة أو حاسبة، وحفظها فوراً لتظهر للعملاء في الموقع
+                Live control over service prices, maintenance packages, cost calculator & workshop location
               </p>
             </div>
           </div>
@@ -157,31 +157,31 @@ export const AdminDashboardModal: React.FC = () => {
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-md shadow-amber-500/20 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               <Save className="w-4 h-4" />
-              <span>حفظ التعديلات فوراً</span>
+              <span>Save Changes</span>
             </button>
 
             <button
               onClick={handleReset}
               className="flex items-center gap-1 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-colors cursor-pointer"
-              title="استعادة الأسعار الافتراضية"
+              title="Restore default settings"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">استعادة الأصلية</span>
+              <span className="hidden sm:inline">Reset Defaults</span>
             </button>
 
             <button
               onClick={logoutAdmin}
               className="flex items-center gap-1 px-3 py-2 rounded-xl bg-rose-950/60 hover:bg-rose-900 border border-rose-800/40 text-rose-300 text-xs font-bold transition-colors cursor-pointer"
-              title="تسجيل الخروج"
+              title="Logout from admin session"
             >
               <LogOut className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">خروج</span>
+              <span className="hidden sm:inline">Logout</span>
             </button>
 
             <button
               onClick={() => setIsAdminDashboardOpen(false)}
               className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors cursor-pointer"
-              aria-label="إغلاق"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
@@ -201,7 +201,7 @@ export const AdminDashboardModal: React.FC = () => {
           </div>
         )}
 
-        {/* Navigation Tabs */}
+        {/* Tab Navigation Navigation Bar */}
         <div className="flex items-center gap-1.5 px-4 sm:px-6 py-2.5 bg-slate-100 border-b border-slate-200 overflow-x-auto">
           
           <button
@@ -213,7 +213,7 @@ export const AdminDashboardModal: React.FC = () => {
             }`}
           >
             <Wrench className="w-4 h-4 text-amber-600" />
-            <span>أسعار الخدمات الرئيسية ({draftServices.length})</span>
+            <span>Services Pricing ({draftServices.length})</span>
           </button>
 
           <button
@@ -225,7 +225,7 @@ export const AdminDashboardModal: React.FC = () => {
             }`}
           >
             <Package className="w-4 h-4 text-amber-600" />
-            <span>باقات الصيانة والاشتراكات ({draftTiers.length})</span>
+            <span>Packages & Tiers ({draftTiers.length})</span>
           </button>
 
           <button
@@ -237,7 +237,7 @@ export const AdminDashboardModal: React.FC = () => {
             }`}
           >
             <Calculator className="w-4 h-4 text-amber-600" />
-            <span>أسعار حاسبة التكلفة ({draftAppliances.length})</span>
+            <span>Cost Calculator ({draftAppliances.length})</span>
           </button>
 
           <button
@@ -249,7 +249,7 @@ export const AdminDashboardModal: React.FC = () => {
             }`}
           >
             <Tag className="w-4 h-4 text-amber-600" />
-            <span>العروض والبنر والتواصل</span>
+            <span>Hero & Contact Info</span>
           </button>
 
           <button
@@ -261,7 +261,7 @@ export const AdminDashboardModal: React.FC = () => {
             }`}
           >
             <MapPin className="w-4 h-4 text-emerald-600" />
-            <span>موقع الخريطة وGPS (العزيزية)</span>
+            <span>GPS & Location Settings</span>
           </button>
 
           <button
@@ -273,27 +273,24 @@ export const AdminDashboardModal: React.FC = () => {
             }`}
           >
             <CalendarDays className="w-4 h-4 text-amber-600" />
-            <span>طلبات الحجز المباشرة ({bookings.length})</span>
-            {bookings.some(b => b.status === 'new') && (
-              <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-            )}
+            <span>Customer Bookings ({bookings.length})</span>
           </button>
 
         </div>
 
         {/* Tab Content Body (Scrollable) */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#faf9f6]">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50">
           
           {/* ================= TAB 1: SERVICES PRICING ================= */}
           {activeTab === 'services' && (
             <div className="space-y-6">
               
               <div className="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl flex items-start gap-3">
-                <Sparkles className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div className="text-xs sm:text-sm text-amber-950">
-                  <p className="font-black">تعديل أسعار الخدمات الفردية المعروضة في قسم الخدمات:</p>
+                  <p className="font-black">Live Pricing Management:</p>
                   <p className="text-slate-600 text-xs mt-1">
-                    قم بتغيير السعر الفعلي وسعر الخصم قبل الشطب. سيتم تحديث البطاقات فوراً بعد الضغط على زر "حفظ التعديلات".
+                    Edit discounted prices, original crossed-out prices, promotional badges, and price notes. Changes reflect instantly across all pages and booking cards.
                   </p>
                 </div>
               </div>
@@ -317,7 +314,7 @@ export const AdminDashboardModal: React.FC = () => {
                       </div>
 
                       <span className="text-[10px] bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded-full">
-                        {service.category === 'ac' ? 'مكيفات' : service.category === 'washer' ? 'غسالات' : 'قطع غيار'}
+                        {service.category === 'ac' ? 'AC Units' : service.category === 'washer' ? 'Washers' : 'Spare Parts'}
                       </span>
                     </div>
 
@@ -325,7 +322,7 @@ export const AdminDashboardModal: React.FC = () => {
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold text-slate-700 mb-1">
-                          السعر المخفض (ر.س) 💰
+                          Discounted Price (SAR) 💰
                         </label>
                         <div className="relative">
                           <input
@@ -338,13 +335,13 @@ export const AdminDashboardModal: React.FC = () => {
                             }}
                             className="w-full px-3 py-2 bg-amber-50/50 rounded-xl border border-amber-300 font-black text-sm text-slate-900 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none"
                           />
-                          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-bold">ر.س</span>
+                          <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-bold">SAR</span>
                         </div>
                       </div>
 
                       <div>
                         <label className="block text-xs font-bold text-slate-700 mb-1">
-                          السعر السابق المشطوب (ر.س)
+                          Original Price (SAR)
                         </label>
                         <div className="relative">
                           <input
@@ -355,10 +352,10 @@ export const AdminDashboardModal: React.FC = () => {
                               const val = Number(e.target.value);
                               setDraftServices(prev => prev.map(s => s.id === service.id ? { ...s, originalPrice: val } : s));
                             }}
-                            placeholder="مثلاً 150"
+                            placeholder="e.g. 150"
                             className="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-300 font-bold text-sm text-slate-900 focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none"
                           />
-                          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-bold">ر.س</span>
+                          <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-bold">SAR</span>
                         </div>
                       </div>
                     </div>
@@ -366,7 +363,7 @@ export const AdminDashboardModal: React.FC = () => {
                     {/* Tag and Note */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-500 mb-0.5">شارة التميز (Badge)</label>
+                        <label className="block text-[11px] font-bold text-slate-500 mb-0.5">Badge Tag</label>
                         <input
                           type="text"
                           value={service.badge || ''}
@@ -374,12 +371,13 @@ export const AdminDashboardModal: React.FC = () => {
                             const val = e.target.value;
                             setDraftServices(prev => prev.map(s => s.id === service.id ? { ...s, badge: val } : s));
                           }}
+                          placeholder="e.g. Most Popular"
                           className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-medium"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-500 mb-0.5">ملاحظة السعر</label>
+                        <label className="block text-[11px] font-bold text-slate-500 mb-0.5">Price Note</label>
                         <input
                           type="text"
                           value={service.priceNote || ''}
@@ -387,7 +385,7 @@ export const AdminDashboardModal: React.FC = () => {
                             const val = e.target.value;
                             setDraftServices(prev => prev.map(s => s.id === service.id ? { ...s, priceNote: val } : s));
                           }}
-                          placeholder="مثلاً: شامل الفحص"
+                          placeholder="e.g. Includes Inspection"
                           className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-medium"
                         />
                       </div>
@@ -407,9 +405,9 @@ export const AdminDashboardModal: React.FC = () => {
               <div className="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl flex items-start gap-3">
                 <Package className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div className="text-xs sm:text-sm text-amber-950">
-                  <p className="font-black">تعديل أسعار باقات الصيانة الشاملة (قسم الباقات):</p>
+                  <p className="font-black">Comprehensive Maintenance Packages:</p>
                   <p className="text-slate-600 text-xs mt-1">
-                    يمكنك تغيير سعر الباقة الفعلي والسعر قبل الخصم وتعديل عنوان الباقة أو مميزاتها.
+                    Update package rates, crossed-out original prices, titles, billing periods, and highlight popular tiers.
                   </p>
                 </div>
               </div>
@@ -432,13 +430,13 @@ export const AdminDashboardModal: React.FC = () => {
                       </span>
                       {tier.popular && (
                         <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
-                          الباقة الأكثر طلباً
+                          Most Requested
                         </span>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 mb-1">اسم الباقة</label>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Package Name</label>
                       <input
                         type="text"
                         value={tier.name}
@@ -450,10 +448,10 @@ export const AdminDashboardModal: React.FC = () => {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 pt-2">
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-black text-slate-800 mb-1">
-                          السعر بعد الخصم 🏷️
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Current Price 💰
                         </label>
                         <div className="relative">
                           <input
@@ -464,34 +462,49 @@ export const AdminDashboardModal: React.FC = () => {
                               const val = Number(e.target.value);
                               setDraftTiers(prev => prev.map(t => t.id === tier.id ? { ...t, price: val } : t));
                             }}
-                            className="w-full px-3 py-2 bg-amber-50 rounded-xl border-2 border-amber-400 font-black text-base text-slate-950 outline-none"
+                            className="w-full px-3 py-2 bg-amber-50/50 rounded-xl border border-amber-300 font-black text-sm text-slate-900 focus:ring-2 focus:ring-amber-500"
                           />
-                          <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-500">ر.س</span>
+                          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-bold">SAR</span>
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-slate-600 mb-1">
-                          السعر الأصلي المشطوب
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Original Price
                         </label>
                         <div className="relative">
                           <input
                             type="number"
                             min="0"
-                            value={tier.originalPrice}
+                            value={tier.originalPrice || ''}
                             onChange={(e) => {
                               const val = Number(e.target.value);
                               setDraftTiers(prev => prev.map(t => t.id === tier.id ? { ...t, originalPrice: val } : t));
                             }}
-                            className="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-300 font-bold text-sm text-slate-900 outline-none"
+                            placeholder="e.g. 299"
+                            className="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-300 font-bold text-sm text-slate-900"
                           />
-                          <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">ر.س</span>
+                          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-bold">SAR</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-100">
-                      <label className="block text-xs font-bold text-slate-600 mb-1">نص زر الحجز (CTA)</label>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Package Subtitle / Target</label>
+                      <input
+                        type="text"
+                        value={tier.subtitle}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setDraftTiers(prev => prev.map(t => t.id === tier.id ? { ...t, subtitle: val } : t));
+                        }}
+                        placeholder="e.g. Best for Villas or Small Apartments"
+                        className="w-full px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Button CTA Text</label>
                       <input
                         type="text"
                         value={tier.ctaText}
@@ -504,8 +517,8 @@ export const AdminDashboardModal: React.FC = () => {
                     </div>
 
                     <div className="pt-2">
-                      <span className="text-xs font-bold text-slate-700 block mb-1">الميزات المشمولة:</span>
-                      <ul className="text-[11px] text-slate-600 space-y-1 pr-3 list-disc">
+                      <span className="text-xs font-bold text-slate-700 block mb-1">Included Features:</span>
+                      <ul className="text-[11px] text-slate-600 space-y-1 pl-3 list-disc">
                         {tier.features.slice(0, 4).map((f, i) => (
                           <li key={i}>{f}</li>
                         ))}
@@ -526,9 +539,9 @@ export const AdminDashboardModal: React.FC = () => {
               <div className="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl flex items-start gap-3">
                 <Calculator className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div className="text-xs sm:text-sm text-amber-950">
-                  <p className="font-black">تعديل أسعار ومعاملات حاسبة التكلفة التقديرية الفورية:</p>
+                  <p className="font-black">Instant Cost Calculator Rates:</p>
                   <p className="text-slate-600 text-xs mt-1">
-                    عندما يقوم العميل باختيار نوع الجهاز والخدمة في الحاسبة، يتم ضرب السعر الأساسي للجهاز في معامل نوع الخدمة.
+                    When customers pick an appliance and service type in the calculator, the base price is multiplied by the service multiplier.
                   </p>
                 </div>
               </div>
@@ -537,7 +550,7 @@ export const AdminDashboardModal: React.FC = () => {
               <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
                 <h3 className="text-base font-black text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
                   <Wrench className="w-4 h-4 text-amber-600" />
-                  <span>1. الأسعار الأساسية للأجهزة (Base Price لكل جهاز)</span>
+                  <span>1. Appliance Base Prices (SAR per appliance)</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -555,7 +568,7 @@ export const AdminDashboardModal: React.FC = () => {
                           }}
                           className="w-full px-3 py-2 bg-white rounded-xl border border-amber-300 font-black text-sm text-slate-900 outline-none focus:ring-2 focus:ring-amber-500"
                         />
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">ر.س</span>
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">SAR</span>
                       </div>
                     </div>
                   ))}
@@ -566,7 +579,7 @@ export const AdminDashboardModal: React.FC = () => {
               <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
                 <h3 className="text-base font-black text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
                   <Layers className="w-4 h-4 text-amber-600" />
-                  <span>2. معاملات أنواع الخدمة (Service Multipliers)</span>
+                  <span>2. Service Multipliers</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -575,14 +588,14 @@ export const AdminDashboardModal: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-black text-slate-800">{svc.name}</span>
                         <span className="text-[11px] font-mono font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">
-                          معامل الضرب: x{svc.multiplier}
+                          Multiplier: x{svc.multiplier}
                         </span>
                       </div>
                       <p className="text-[11px] text-slate-500">{svc.desc}</p>
                       
                       <div className="pt-1">
                         <label className="block text-[11px] font-bold text-slate-600 mb-1">
-                          معامل السعر (Multiplier)
+                          Price Multiplier
                         </label>
                         <input
                           type="number"
@@ -611,9 +624,9 @@ export const AdminDashboardModal: React.FC = () => {
               <div className="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl flex items-start gap-3">
                 <Tag className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div className="text-xs sm:text-sm text-amber-950">
-                  <p className="font-black">تعديل أسعار البنر والصفحة الأولى ومعلومات الاتصال:</p>
+                  <p className="font-black">Homepage Banner & Contact Details:</p>
                   <p className="text-slate-600 text-xs mt-1">
-                    هنا يمكنك تحديد السعر الذي يبدأ منه الفحص في واجهة الموقع (Hero)، ونسبة الخصم، ونص البنر العلوي، ورقم الهاتف والواتساب.
+                    Set the starting promotional price on the homepage hero, discount percentage, top banner text, and official phone/WhatsApp numbers.
                   </p>
                 </div>
               </div>
@@ -623,12 +636,12 @@ export const AdminDashboardModal: React.FC = () => {
                 {/* Hero Pricing Box */}
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
                   <h3 className="text-base font-black text-slate-900 border-b border-slate-100 pb-3">
-                    أسعار العرض الترويجي في واجهة الموقع
+                    Homepage Promotional Rates
                   </h3>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      سعر البداية في واجهة الموقع (تبدأ من ... ريال) 💰
+                      Starting Price on Homepage (Starting from ... SAR) 💰
                     </label>
                     <div className="relative">
                       <input
@@ -638,14 +651,14 @@ export const AdminDashboardModal: React.FC = () => {
                         onChange={(e) => setDraftHero({ ...draftHero, startingPrice: Number(e.target.value) })}
                         className="w-full px-3 py-2 bg-amber-50 rounded-xl border-2 border-amber-400 font-black text-base text-slate-950 outline-none"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-500">ر.س</span>
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-500">SAR</span>
                     </div>
-                    <p className="text-[11px] text-slate-400 mt-1">يظهر في الهيرو ومقدمة الموقع "تبدأ من 79 ريال"</p>
+                    <p className="text-[11px] text-slate-400 mt-1">Displays on hero as "Starting from 79 SAR"</p>
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      نسبة الخصم المعروضة (%) 🏷️
+                      Displayed Discount Percentage (%) 🏷️
                     </label>
                     <div className="relative">
                       <input
@@ -654,46 +667,46 @@ export const AdminDashboardModal: React.FC = () => {
                         max="100"
                         value={draftHero.discountPercent}
                         onChange={(e) => setDraftHero({ ...draftHero, discountPercent: Number(e.target.value) })}
-                        className="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-300 font-black text-base text-slate-900 outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 font-black text-base text-slate-900 outline-none"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">%</span>
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">%</span>
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      نص الشريط الإعلاني العلوي (Top Banner Text)
+                      Top Announcement Ribbon Text 📢
                     </label>
-                    <textarea
-                      rows={2}
+                    <input
+                      type="text"
                       value={draftHero.announcementText}
                       onChange={(e) => setDraftHero({ ...draftHero, announcementText: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium text-slate-900"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-900"
                     />
                   </div>
                 </div>
 
-                {/* Contact Numbers Box */}
+                {/* Contact Settings */}
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
                   <h3 className="text-base font-black text-slate-900 border-b border-slate-100 pb-3">
-                    أرقام التواصل والواتساب المعتمدة
+                    Official Contact Channels
                   </h3>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      رقم الاتصال المباشر (Phone Display) 📞
+                      Direct Phone Number (Display) 📞
                     </label>
                     <input
                       type="text"
                       value={draftContact.phoneDisplay}
                       onChange={(e) => setDraftContact({ ...draftContact, phone: e.target.value, phoneDisplay: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-slate-900"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 font-mono"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      العنوان الميداني الرئيسي
+                      Workshop Primary Address
                     </label>
                     <input
                       type="text"
@@ -706,10 +719,10 @@ export const AdminDashboardModal: React.FC = () => {
                   <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 space-y-1">
                     <p className="font-bold flex items-center gap-1.5">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                      <span>ربط تلقائي بالواتساب</span>
+                      <span>Automatic WhatsApp & Call Sync</span>
                     </p>
                     <p className="text-[11px] text-emerald-800">
-                      عند تعديل رقم الهاتف، يتم تحديث روابط الاتصال وأزرار واتساب المباشرة تلقائياً.
+                      Updating the phone number automatically refreshes all floating call and WhatsApp buttons across the entire website.
                     </p>
                   </div>
                 </div>
@@ -727,10 +740,10 @@ export const AdminDashboardModal: React.FC = () => {
                 <MapPin className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-black text-slate-900 text-sm sm:text-base">
-                    إدارة موقع الفرع والخريطة وصورة الأقمار الصناعية (حي العزيزية - مكة المكرمة)
+                    Workshop GPS Location & Map Controls (Al-Aziziyah, Makkah)
                   </h3>
                   <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    يمكنك هنا تعديل إحداثيات GPS الدقيقة، ولصق رابط Google Maps، أو رفع لقطة شاشة حقيقية لخريطتك لتظهر لجميع العملاء كصورة الموقع المعتمدة.
+                    Update precise GPS coordinates, paste any Google Maps URL, or upload a custom aerial screenshot to display on the live map.
                   </p>
                 </div>
               </div>
@@ -742,11 +755,11 @@ export const AdminDashboardModal: React.FC = () => {
                   <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h4 className="text-sm font-black text-slate-900 flex items-center gap-2">
                       <Camera className="w-4 h-4 text-amber-600" />
-                      <span>صورة الخريطة المعتمدة للموقع</span>
+                      <span>Workshop Aerial Photo / Screenshot</span>
                     </h4>
                     {draftLocation.customMapImageUrl && (
                       <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
-                        صورة مخصصة نشطة ✓
+                        Custom Active ✓
                       </span>
                     )}
                   </div>
@@ -756,14 +769,14 @@ export const AdminDashboardModal: React.FC = () => {
                     {draftLocation.customMapImageUrl ? (
                       <img 
                         src={draftLocation.customMapImageUrl} 
-                        alt="صورة الخريطة المخصصة" 
+                        alt="Custom Map Preview" 
                         className="w-full h-full object-cover"
                       />
                     ) : (
                       <div className="text-center p-4 text-slate-400">
                         <MapPin className="w-8 h-8 text-amber-400 mx-auto mb-2 opacity-80" />
-                        <p className="text-xs font-bold text-slate-300">يتم حالياً استخدام صورة الأقمار الصناعية الافتراضية</p>
-                        <p className="text-[11px] text-slate-500 mt-1">ارفع لقطة شاشة (Screenshot) لخريطتك لاستبدالها فوراً</p>
+                        <p className="text-xs font-bold text-slate-300">Using default Google Maps satellite aerial image</p>
+                        <p className="text-[11px] text-slate-500 mt-1">Upload a mobile screenshot to customize it</p>
                       </div>
                     )}
                   </div>
@@ -771,7 +784,7 @@ export const AdminDashboardModal: React.FC = () => {
                   {/* Upload Controls */}
                   <div className="space-y-2">
                     <label className="block text-xs font-bold text-slate-700">
-                      رفع لقطة شاشة من الهاتف (من الواتساب أو Google Maps):
+                      Upload Mobile Screenshot (from WhatsApp or Google Maps):
                     </label>
                     <input
                       type="file"
@@ -784,13 +797,13 @@ export const AdminDashboardModal: React.FC = () => {
                             const b64 = ev.target?.result as string;
                             if (b64) {
                               setDraftLocation({ ...draftLocation, customMapImageUrl: b64 });
-                              showToast('تم تحميل صورة الخريطة بنجاح! اضغط حفظ التغييرات بالأعلى لاعتمادها.');
+                              showToast('Map screenshot uploaded successfully! Click Save Changes to apply.');
                             }
                           };
                           reader.readAsDataURL(file);
                         }
                       }}
-                      className="block w-full text-xs text-slate-500 file:mr-0 file:ml-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer"
+                      className="block w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer"
                     />
 
                     {draftLocation.customMapImageUrl && (
@@ -798,11 +811,11 @@ export const AdminDashboardModal: React.FC = () => {
                         type="button"
                         onClick={() => {
                           setDraftLocation({ ...draftLocation, customMapImageUrl: '' });
-                          showToast('تمت استعادة صورة القمر الصناعي الافتراضية.');
+                          showToast('Reverted to default satellite map image.');
                         }}
                         className="text-xs text-rose-600 hover:text-rose-700 font-bold underline cursor-pointer"
                       >
-                        إلغاء الصورة المخصصة والعودة للافتراضية
+                        Reset to default aerial imagery
                       </button>
                     )}
                   </div>
@@ -812,42 +825,49 @@ export const AdminDashboardModal: React.FC = () => {
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
                   <h4 className="text-sm font-black text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
                     <Link2 className="w-4 h-4 text-emerald-600" />
-                    <span>إحداثيات GPS ورابط الخريطة</span>
+                    <span>GPS Coordinates & Google Maps URL</span>
                   </h4>
 
                   {/* Fast URL input */}
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      لصق رابط Google Maps (يقوم باستخراج الإحداثيات تلقائياً):
+                      Paste Google Maps URL or Coordinates:
                     </label>
                     <div className="flex gap-2">
                       <input
                         type="text"
                         value={locationInputUrl}
                         onChange={(e) => setLocationInputUrl(e.target.value)}
-                        placeholder="https://maps.app.goo.gl/... أو 21.391009, 39.877195"
-                        className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-300 focus:border-amber-500 outline-none"
+                        placeholder="https://maps.app.goo.gl/... or 21.39163, 39.87588"
+                        className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-300 focus:border-amber-500 outline-none font-mono"
                       />
                       <button
                         type="button"
                         onClick={() => {
                           if (!locationInputUrl.trim()) return;
-                          const coords = extractCoordinates(locationInputUrl.trim());
+                          const trimmed = locationInputUrl.trim();
+                          const coords = extractCoordinates(trimmed);
                           if (coords) {
                             setDraftLocation({
                               ...draftLocation,
                               latitude: coords.lat,
                               longitude: coords.lng,
-                              googleMapsUrl: locationInputUrl.startsWith('http') ? locationInputUrl : `https://maps.google.com/?q=${coords.lat},${coords.lng}`
+                              googleMapsUrl: trimmed.startsWith('http') ? trimmed : `https://maps.google.com/?q=${coords.lat},${coords.lng}`
                             });
-                            showToast(`تم استخراج الإحداثيات: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)}`);
+                            showToast(`Extracted coordinates: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)}`);
+                          } else if (trimmed.startsWith('http')) {
+                            setDraftLocation({
+                              ...draftLocation,
+                              googleMapsUrl: trimmed
+                            });
+                            showToast('Google Maps URL saved successfully.');
                           } else {
-                            showToast('تعذر استخراج الإحداثيات. يرجى إدخالها يدوياً.');
+                            showToast('Could not extract coordinates. Please enter them manually below.');
                           }
                         }}
                         className="py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-300 font-bold text-xs shrink-0 cursor-pointer"
                       >
-                        تطبيق
+                        Apply
                       </button>
                     </div>
                   </div>
@@ -856,7 +876,7 @@ export const AdminDashboardModal: React.FC = () => {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">
-                        خط العرض (Latitude)
+                        Latitude
                       </label>
                       <input
                         type="number"
@@ -868,7 +888,7 @@ export const AdminDashboardModal: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">
-                        خط الطول (Longitude)
+                        Longitude
                       </label>
                       <input
                         type="number"
@@ -883,7 +903,7 @@ export const AdminDashboardModal: React.FC = () => {
                   {/* Street & Landmarks */}
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      اسم الشارع والحي:
+                      Street & District Name:
                     </label>
                     <input
                       type="text"
@@ -893,40 +913,58 @@ export const AdminDashboardModal: React.FC = () => {
                     />
                   </div>
 
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Primary Landmark 1:
+                      </label>
+                      <input
+                        type="text"
+                        value={draftLocation.adjacentLandmark1}
+                        onChange={(e) => setDraftLocation({ ...draftLocation, adjacentLandmark1: e.target.value })}
+                        placeholder="e.g. Next to Snabel Golden Hotel"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Secondary Landmark 2:
+                      </label>
+                      <input
+                        type="text"
+                        value={draftLocation.adjacentLandmark2}
+                        onChange={(e) => setDraftLocation({ ...draftLocation, adjacentLandmark2: e.target.value })}
+                        placeholder="e.g. Near 6B Bus Stand HC"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs"
+                      />
+                    </div>
+                  </div>
+
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      المعلم المجاور 1 (مثلاً: بجوار عرين العزيزية للشقق المفروشة):
+                      Google Maps Plus Code:
                     </label>
                     <input
                       type="text"
-                      value={draftLocation.adjacentLandmark1}
-                      onChange={(e) => setDraftLocation({ ...draftLocation, adjacentLandmark1: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs"
+                      value={draftLocation.plusCode || ''}
+                      onChange={(e) => setDraftLocation({ ...draftLocation, plusCode: e.target.value })}
+                      placeholder="e.g. 9VRG+M9 Makkah Saudi Arabia"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono text-xs font-bold"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      المعلم المجاور 2 (مثلاً: أمام موقف حافلات 6B Bus Stand):
+                      Direct Google Maps URL:
                     </label>
                     <input
                       type="text"
-                      value={draftLocation.adjacentLandmark2}
-                      onChange={(e) => setDraftLocation({ ...draftLocation, adjacentLandmark2: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs"
+                      value={draftLocation.googleMapsUrl || ''}
+                      onChange={(e) => setDraftLocation({ ...draftLocation, googleMapsUrl: e.target.value })}
+                      placeholder="https://maps.app.goo.gl/..."
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono text-xs"
                     />
                   </div>
-
-                  {/* Test link button */}
-                  <a
-                    href={`https://maps.google.com/?q=${draftLocation.latitude},${draftLocation.longitude}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-amber-700 font-bold hover:underline pt-1"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    <span>اختبار الموقع على خرائط Google الآن ↗</span>
-                  </a>
 
                 </div>
 
@@ -935,20 +973,38 @@ export const AdminDashboardModal: React.FC = () => {
             </div>
           )}
 
-          {/* ================= TAB 6: BOOKINGS MANAGEMENT ================= */}
+          {/* ================= TAB 6: CUSTOMER BOOKINGS ================= */}
           {activeTab === 'bookings' && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               
-              {/* Header and filters */}
-              <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2 flex-1 min-w-[240px]">
-                  <Search className="w-4 h-4 text-slate-400" />
+              <div className="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <CalendarDays className="w-5 h-5 text-amber-600" />
+                  <div>
+                    <h3 className="font-black text-slate-900 text-sm">Customer Bookings & Inquiries</h3>
+                    <p className="text-xs text-slate-600 mt-0.5">
+                      Track appointments, customer requests, contact directly via phone or WhatsApp, and manage service status.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-xs bg-slate-900 text-amber-300 font-black px-3 py-1 rounded-xl">
+                    Total: {bookings.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Search & Filter Controls */}
+              <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200">
+                <div className="relative flex-1 min-w-[240px]">
+                  <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
-                    placeholder="ابحث بالاسم، رقم الجوال، الحي، أو نوع الخدمة..."
                     value={searchBookingQuery}
                     onChange={(e) => setSearchBookingQuery(e.target.value)}
-                    className="w-full text-xs font-medium text-slate-800 outline-none bg-transparent"
+                    placeholder="Search by customer name, phone, city or service..."
+                    className="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:border-amber-500"
                   />
                 </div>
 
@@ -957,108 +1013,109 @@ export const AdminDashboardModal: React.FC = () => {
                   <select
                     value={bookingFilterStatus}
                     onChange={(e) => setBookingFilterStatus(e.target.value)}
-                    className="text-xs font-bold bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-slate-700 outline-none"
+                    className="px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 outline-none bg-white"
                   >
-                    <option value="all">كل الحالات ({bookings.length})</option>
-                    <option value="new">جديدة (New)</option>
-                    <option value="in_progress">قيد المعالجة (In Progress)</option>
-                    <option value="completed">تم الإنجاز (Completed)</option>
-                    <option value="cancelled">ملغية (Cancelled)</option>
+                    <option value="all">All Statuses</option>
+                    <option value="new">New / Pending</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
                   </select>
                 </div>
               </div>
 
               {/* Bookings List */}
               {filteredBookings.length === 0 ? (
-                <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300">
+                <div className="bg-white rounded-3xl p-12 text-center border border-slate-200">
                   <CalendarDays className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                  <p className="text-slate-600 font-bold text-sm">لا توجد طلبات تطابق بحثك حالياً</p>
+                  <p className="text-sm font-bold text-slate-700">No bookings found matching your search</p>
+                  <p className="text-xs text-slate-400 mt-1">New customer bookings from the website form will appear here automatically</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredBookings.map((b) => (
-                    <div
+                    <div 
                       key={b.id}
-                      className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:border-amber-300 transition-all space-y-3"
+                      className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-3"
                     >
-                      <div className="flex items-start justify-between gap-2 border-b border-slate-100 pb-3">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-mono font-black text-xs text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                              {b.id}
-                            </span>
+                      <div>
+                        <div className="flex items-start justify-between gap-2 border-b border-slate-100 pb-2">
+                          <div>
                             <h4 className="text-sm font-black text-slate-900">{b.name}</h4>
+                            <p className="text-[11px] text-slate-400 font-mono mt-0.5">{b.createdAt}</p>
                           </div>
-                          <p className="text-xs text-slate-500 font-medium mt-1">
-                            {b.city} {b.district ? `(${b.district})` : ''}
-                          </p>
+                          
+                          <select
+                            value={b.status}
+                            onChange={(e) => updateBookingStatus(b.id, e.target.value as any)}
+                            className={`text-[11px] font-black px-2 py-1 rounded-lg border outline-none cursor-pointer ${
+                              b.status === 'completed' ? 'bg-emerald-50 text-emerald-800 border-emerald-300' :
+                              b.status === 'in_progress' ? 'bg-blue-50 text-blue-800 border-blue-300' :
+                              b.status === 'cancelled' ? 'bg-rose-50 text-rose-800 border-rose-300' :
+                              'bg-amber-50 text-amber-800 border-amber-300'
+                            }`}
+                          >
+                            <option value="new">New / Pending</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                          </select>
                         </div>
 
-                        {/* Status Select */}
-                        <select
-                          value={b.status}
-                          onChange={(e) => updateBookingStatus(b.id, e.target.value as any)}
-                          className={`text-xs font-bold px-2.5 py-1 rounded-xl border outline-none cursor-pointer ${
-                            b.status === 'new'
-                              ? 'bg-amber-100 text-amber-900 border-amber-300'
-                              : b.status === 'in_progress'
-                              ? 'bg-blue-100 text-blue-900 border-blue-300'
-                              : b.status === 'completed'
-                              ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
-                              : 'bg-rose-100 text-rose-900 border-rose-300'
-                          }`}
-                        >
-                          <option value="new">جديد ⏳</option>
-                          <option value="in_progress">قيد المعالجة 🔧</option>
-                          <option value="completed">تم الإنجاز ✅</option>
-                          <option value="cancelled">ملغي ❌</option>
-                        </select>
-                      </div>
-
-                      {/* Service Details */}
-                      <div className="text-xs space-y-1 text-slate-700">
-                        <p><span className="font-bold text-slate-500">الخدمة:</span> {b.service}</p>
-                        <p><span className="font-bold text-slate-500">الموعد:</span> {b.date} - {b.timeSlot}</p>
-                        {b.notes && (
-                          <p className="bg-slate-50 p-2 rounded-lg text-slate-600 border border-slate-100 mt-1">
-                            <span className="font-bold">ملاحظات:</span> {b.notes}
+                        <div className="space-y-1.5 pt-2 text-xs">
+                          <p className="text-slate-700">
+                            <span className="font-bold text-slate-500">Service: </span>
+                            <span className="font-black text-amber-700">{b.service}</span>
                           </p>
-                        )}
-                        <p className="text-[10px] text-slate-400">تاريخ الطلب: {b.createdAt}</p>
+                          <p className="text-slate-700">
+                            <span className="font-bold text-slate-500">City / District: </span>
+                            <span>{b.city}</span>
+                          </p>
+                          <p className="text-slate-700">
+                            <span className="font-bold text-slate-500">Preferred Date: </span>
+                            <span className="font-mono">{b.date} {b.timeSlot ? `(${b.timeSlot})` : ''}</span>
+                          </p>
+                          {b.notes && (
+                            <p className="text-[11px] text-slate-500 italic bg-slate-50 p-2 rounded-lg">
+                              "{b.notes}"
+                            </p>
+                          )}
+                        </div>
                       </div>
 
-                      {/* Quick Contact & Delete Buttons */}
-                      <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
-                        <div className="flex items-center gap-2">
+                      {/* Direct Actions */}
+                      <div className="flex items-center justify-between pt-2 border-t border-slate-100 gap-2">
+                        <div className="flex items-center gap-1.5">
                           <a
                             href={`tel:${b.phone}`}
-                            className="inline-flex items-center gap-1 text-xs font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-xl border border-amber-200 transition-colors"
+                            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 transition-colors"
+                            title={`Call ${b.phone}`}
                           >
-                            <Phone className="w-3 h-3 text-amber-600" />
-                            <span>اتصال: {b.phone}</span>
+                            <Phone className="w-3.5 h-3.5" />
                           </a>
-
                           <a
-                            href={`https://wa.me/966${b.phone.replace(/^0/, '')}?text=${encodeURIComponent(`السلام عليكم أستاذ ${b.name}، بخصوص طلب الصيانة رقم ${b.id} لخدمة ${b.service}`)}`}
+                            href={`https://wa.me/966${b.phone.replace(/^0+/, '')}?text=${encodeURIComponent(`Hello ${b.name}, we received your booking for ${b.service}.`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-200 transition-colors"
+                            className="p-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-800 transition-colors"
+                            title={`WhatsApp ${b.phone}`}
                           >
-                            <MessageCircle className="w-3 h-3 text-emerald-600" />
-                            <span>واتساب</span>
+                            <MessageCircle className="w-3.5 h-3.5" />
                           </a>
                         </div>
 
                         <button
+                          type="button"
                           onClick={() => {
-                            if (window.confirm(`هل أنت متأكد من حذف الطلب ${b.id}؟`)) {
+                            if (window.confirm(`Delete booking for ${b.name}?`)) {
                               deleteBooking(b.id);
+                              showToast('Booking deleted successfully.');
                             }
                           }}
-                          className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
-                          title="حذف الطلب"
+                          className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                          title="Delete booking"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
 
@@ -1072,33 +1129,7 @@ export const AdminDashboardModal: React.FC = () => {
 
         </div>
 
-        {/* Footer Bar with Save Buttons */}
-        <div className="p-4 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>يتم حفظ وتطبيق التعديلات محلياً وفورياً على كامل المتصفح.</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsAdminDashboardOpen(false)}
-              className="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs sm:text-sm font-bold transition-colors cursor-pointer"
-            >
-              إغلاق اللوحة
-            </button>
-
-            <button
-              onClick={handleSaveAll}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 text-xs sm:text-sm font-black shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              <Save className="w-4 h-4" />
-              <span>حفظ جميع التعديلات فوراً</span>
-            </button>
-          </div>
-        </div>
-
       </div>
-
     </div>
   );
 };

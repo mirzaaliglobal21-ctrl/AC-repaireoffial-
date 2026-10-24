@@ -39,7 +39,7 @@ export const CityCoverage: React.FC<CityCoverageProps> = ({ onOpenBooking }) => 
                 onClick={() => setSelectedCity(city)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   selectedCity.name === city.name
-                    ? 'bg-gradient-to-r from-[#ea580c] to-amber-500 text-white shadow-md shadow-amber-500/20 scale-105'
+                    ? 'bg-gradient-to-r from-[#ea580c] to-amber-500 text-white shadow-md shadow-amber-500/20 md:scale-105 font-black'
                     : 'bg-white text-slate-700 hover:bg-amber-50 border border-slate-200 shadow-sm'
                 }`}
               >

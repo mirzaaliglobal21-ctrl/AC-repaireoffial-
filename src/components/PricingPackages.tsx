@@ -42,9 +42,9 @@ export const PricingPackages: React.FC<PricingPackagesProps> = ({ onOpenBooking 
             return (
               <div
                 key={tier.id}
-                className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 relative text-right ${
+                className={`rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative text-right ${
                   tier.popular
-                    ? 'bg-white border-2 border-amber-400 shadow-2xl shadow-amber-500/15 scale-105 z-10 ring-4 ring-amber-100'
+                    ? 'bg-white border-2 border-amber-400 shadow-2xl shadow-amber-500/15 md:scale-105 z-10 ring-4 ring-amber-100'
                     : 'bg-white border border-slate-200 hover:border-amber-400 shadow-lg'
                 }`}
               >

@@ -122,18 +122,21 @@ export const PricingCalculator: React.FC<PricingCalculatorProps> = ({ onOpenBook
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-2.5">
                   {[1, 2, 3, 4, 5, 6].map((num) => (
                     <button
                       key={num}
                       onClick={() => setQuantity(num)}
-                      className={`flex-1 py-3 rounded-2xl text-sm font-black transition-all border cursor-pointer ${
+                      className={`py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black transition-all border cursor-pointer ${
                         quantity === num
                           ? 'bg-[#ea580c] text-white border-[#ea580c] shadow-md shadow-orange-500/20'
                           : 'bg-white text-slate-700 hover:bg-amber-50 border-slate-200'
                       }`}
                     >
-                      {num} {num === 1 ? 'جهاز' : 'أجهزة'}
+                      <span className="font-mono text-sm sm:text-base">{num}</span>
+                      <span className="text-[10px] sm:text-xs block sm:inline font-bold sm:mr-1">
+                        {num === 1 ? 'جهاز' : 'أجهزة'}
+                      </span>
                     </button>
                   ))}
                 </div>
